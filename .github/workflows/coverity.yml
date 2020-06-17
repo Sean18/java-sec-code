@@ -9,21 +9,24 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1      
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    #- name: Build with Maven
+    #  run: mvn -B package --file pom.xml
+           
     - name: Download Coverity Analysis Engine
       run: |
         curl http://52.188.212.142:8080/downloadFile.htm?fn=cov-analysis-linux64-2020.06.tar.gz -o cov-analysis-linux64-2020.06.tar.gz -LO -u admin:SIGpass8!
         tar -xf cov-analysis-linux64-2020.06.tar.gz
         curl http://52.188.212.142:8080/downloadFile.htm?fn=analysis-license.dat -o license.dat -LO -u admin:SIGpass8!
         mv license.dat ./cov-analysis-linux64-2020.06/bin
-                
-    - name: npm install
-      run: npm install
         
     - name: Cov-Build              
       run: |
-        ./cov-analysis-linux64-2020.06/bin/cov-configure --javascript
-        ./cov-analysis-linux64-2020.06/bin/cov-build --dir idir --no-command --fs-capture-search .
+        ./cov-analysis-linux64-2020.06/bin/cov-configure --java
+        ./cov-analysis-linux64-2020.06/bin/cov-build --dir idir mvn install
     
     - name: Cov-Analyze
       run: |
