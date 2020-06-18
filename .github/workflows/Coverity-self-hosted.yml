@@ -20,12 +20,13 @@ jobs:
     - name: Cov-Build              
       run: |
         cov-configure -c cov-config\cov-config.xml --java
-        cov-configure -c cov-config\cov-config.xml --javascript
-        cov-build --dir idir -c cov-config\cov-config.xml --fs-capture-search . --no-security-da mvn install -DskipTests
-    
+     
+        cov-build --dir idir -c cov-config\cov-config.xml --no-security-da mvn install -DskipTests
+    #   cov-configure -c cov-config\cov-config.xml --javascript
     - name: Cov-Analyze
       run: |
-        cov-analyze --dir idir --webapp-security --disable-fb --export-summaries false
+        cov-analyze --dir idir --webapp-security --disable-fb 
+    # --export-summaries false
         
     - name: Cov-Commit-Defects
       run: |
