@@ -1,0 +1,32 @@
+
+name: Run Coverity on Self-Hosted Agent
+on: [push]
+
+jobs:
+  synopsys_coverity:
+    name: Synopsys Coverity
+    #runs-on: ubuntu-latest
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    #- name: Build with Maven
+    #  run: mvn -B package --file pom.xml
+           
+    - name: Cov-Build              
+      run: |
+        cov-configure -c cov-config\cov-config.xml --java
+        cov-configure -c cov-config\cov-config.xml --javascript
+        cov-build --dir idir -c cov-config\cov-config.xml --fs-capture-search . --no-security-da mvn install -DskipTests
+    
+    - name: Cov-Analyze
+      run: |
+        cov-analyze --dir idir --webapp-security --disable-fb --export-summaries false
+        
+    - name: Cov-Commit-Defects
+      run: |
+        cov-commit-defects --dir idir --host 52.188.212.142 --stream java-sec-code --user admin --password SIGpass8!
