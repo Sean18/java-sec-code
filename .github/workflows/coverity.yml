@@ -1,6 +1,6 @@
 
 name: Run Coverity On Polaris
-on: [push]
+on: [release]
 
 jobs:
   synopsys_coverity:
