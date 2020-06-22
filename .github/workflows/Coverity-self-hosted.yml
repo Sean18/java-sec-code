@@ -1,6 +1,6 @@
 
 name: Run Coverity on Self-Hosted Agent
-on: [push]
+on: [release]
 
 jobs:
   synopsys_coverity:
