@@ -29,7 +29,7 @@ jobs:
         echo Getting files for changeset SHA:  $GITHUB_SHA
         git show $GITHUB_SHA --name-only --pretty=""
         git show $GITHUB_SHA --name-only --pretty="" |tr '\n' ' '
-        export FILES=git show $GITHUB_SHA --name-only --pretty="" |tr '\n' ' '
+        export FILES=`git show $GITHUB_SHA --name-only --pretty="" |tr '\n' ' '`
         echo "::set-env name=FILES_TO_ANALYZE::$FILES"
 
     - name: variable test
