@@ -30,6 +30,7 @@ jobs:
         git show $GITHUB_SHA --name-only --pretty=""
         git show $GITHUB_SHA --name-only --pretty="" |tr '\n' ' '
         export FILES=`git show $GITHUB_SHA --name-only --pretty="" |tr '\n' ' '`
+        echo File List==$FILES
         echo "::set-env name=FILES_TO_ANALYZE::$FILES"
 
     - name: variable test
