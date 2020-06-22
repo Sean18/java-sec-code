@@ -1,5 +1,5 @@
 
-name: Run Coverity on Self-Hosted Agent
+name: Run Coverity on Self-Hosted Agent INCREMENTAL
 on: [push]
 
 jobs:
@@ -23,16 +23,14 @@ jobs:
         git show $GITHUB_SHA --name-only --pretty=""
 
 
-    # - name: Cov-Build              
-    #   run: |
-    #     cov-configure -c cov-config\cov-config.xml --java
-     
-    #     cov-build --dir idir -c cov-config\cov-config.xml --no-security-da mvn install -DskipTests
-    # #   cov-configure -c cov-config\cov-config.xml --javascript
-    # - name: Cov-Analyze
-    #   run: |
-    #     cov-analyze --dir idir --webapp-security --disable-fb 
-    # # --export-summaries false
+     - name: Cov-Build              
+       run: |
+        cov-run-desktop --setup --user admin --password SIGpass8!   
+    
+     - name: Cov-Analyze
+       run: |
+        cov-run-desktop --webapp-security --reference-snapshot latest --ignore-uncapturable-inputs true --scm git --analyze-scm-modified
+    
         
     # - name: Cov-Commit-Defects
     #   run: |
