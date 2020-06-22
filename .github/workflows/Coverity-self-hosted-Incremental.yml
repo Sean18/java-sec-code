@@ -17,10 +17,10 @@ jobs:
     #- name: Build with Maven
     #  run: mvn -B package --file pom.xml
 
-    - name: Get Changed File List 
-      run: |
-        echo Getting files for changeset SHA:  $GITHUB_SHA
-        git show $GITHUB_SHA --name-only --pretty=""
+    # - name: Get Changed File List 
+    #   run: |
+    #     echo Getting files for changeset SHA:  $GITHUB_SHA
+    #     git show $GITHUB_SHA --name-only --pretty=""
 
     - name: C-R-D Setup              
       run: |
