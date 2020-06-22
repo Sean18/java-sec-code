@@ -22,9 +22,8 @@ jobs:
         echo Getting files for changeset SHA:  $GITHUB_SHA
         git show $GITHUB_SHA --name-only --pretty=""
 
-
-     - name: Cov-Build              
-       run: |
+    - name: Cov-Build              
+      run: |
         cov-run-desktop --setup --user admin --password SIGpass8!   
     
      - name: Cov-Analyze
