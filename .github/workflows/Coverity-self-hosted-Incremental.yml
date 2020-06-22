@@ -37,13 +37,13 @@ jobs:
       run: |
         echo $FILES_TO_ANALYZE
 
-    # - name: C-R-D Setup              
-    #   run: |
-    #     cov-run-desktop --setup --user admin --password SIGpass8!   
+    - name: C-R-D Setup              
+      run: |
+        cov-run-desktop --setup --user admin --password SIGpass8!   
     
-    # - name: Run Incremental Analysis
-    #   run: |
-    #     cov-run-desktop --webapp-security --reference-snapshot latest --ignore-uncapturable-inputs true --scm git --analyze-scm-modified
+    - name: Run Incremental Analysis
+      run: |
+        cov-run-desktop --webapp-security --reference-snapshot latest --ignore-uncapturable-inputs true --scm git $FILES_TO_ANALYZE
     
         
     # - name: Cov-Commit-Defects
