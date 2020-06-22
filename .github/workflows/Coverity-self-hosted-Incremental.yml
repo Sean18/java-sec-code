@@ -24,18 +24,25 @@ jobs:
         pwd
         ls -a
 
-    # - name: Get Changed File List 
-    #   run: |
-    #     echo Getting files for changeset SHA:  $GITHUB_SHA
-    #     git show $GITHUB_SHA --name-only --pretty=""
+    - name: Get Changed File List 
+      run: |
+        echo Getting files for changeset SHA:  $GITHUB_SHA
+        git show $GITHUB_SHA --name-only --pretty=""
+        git show $GITHUB_SHA --name-only --pretty="" |tr '\n' ' '
+        export FILES=git show $GITHUB_SHA --name-only --pretty="" |tr '\n' ' '
+        echo "::set-env name=FILES_TO_ANALYZE::$FILES"
 
-    - name: C-R-D Setup              
+    - name: variable test
       run: |
-        cov-run-desktop --setup --user admin --password SIGpass8!   
+        echo $FILES_TO_ANALYZE
+
+    # - name: C-R-D Setup              
+    #   run: |
+    #     cov-run-desktop --setup --user admin --password SIGpass8!   
     
-    - name: Run Incremental Analysis
-      run: |
-        cov-run-desktop --webapp-security --reference-snapshot latest --ignore-uncapturable-inputs true --scm git --analyze-scm-modified
+    # - name: Run Incremental Analysis
+    #   run: |
+    #     cov-run-desktop --webapp-security --reference-snapshot latest --ignore-uncapturable-inputs true --scm git --analyze-scm-modified
     
         
     # - name: Cov-Commit-Defects
