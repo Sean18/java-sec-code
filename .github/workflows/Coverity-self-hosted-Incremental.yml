@@ -17,10 +17,10 @@ jobs:
     #- name: Build with Maven
     #  run: mvn -B package --file pom.xml
 
-    - run: ls
+    - run: ls -a
     - run: |
         cd java-sec-code
-        ls
+        ls -a
 
     # - name: Get Changed File List 
     #   run: |
