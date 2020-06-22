@@ -10,3 +10,7 @@ docker_jdk_build.sh
 data-coverity
 .synopsys
 idir
+.classpath
+.factorypath
+.project
+.settings
