@@ -26,8 +26,8 @@ jobs:
       run: |
         cov-run-desktop --setup --user admin --password SIGpass8!   
     
-     - name: Cov-Analyze
-       run: |
+    - name: Cov-Analyze
+      run: |
         cov-run-desktop --webapp-security --reference-snapshot latest --ignore-uncapturable-inputs true --scm git --analyze-scm-modified
     
         
