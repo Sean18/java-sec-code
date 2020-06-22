@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: '0'
-        
+
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
@@ -22,9 +22,6 @@ jobs:
 
     - run: |
         pwd
-        ls -a
-    - run: |
-        cd java-sec-code
         ls -a
 
     # - name: Get Changed File List 
