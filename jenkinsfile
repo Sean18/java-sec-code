@@ -11,20 +11,21 @@ pipeline {
         stage('Synopsys Black Duck') {
             steps {
                 script {
-                    sh 'pwd'
-                    sh 'ls -all'
                     echo 'Files that were changed in last commit: '
                     sh 'git show --name-only --oneline'
-                    echo 'Starting script...'
                     
-                    def status = sh(returnStatus: true, script:'bash /var/lib/jenkins/workspace/BlackDuckScript/script.sh')
-                    if (status == 0) {
-                        echo 'Script passed, starting other activities...'
-                    }
                     
-                    if (status != 0) {
-                        echo 'Files where changed, starting Black Duck Scan...'
+                    def status = sh(returnStatus: true, script:'bash BlackDuckFilesChanged.sh')
+                    if (status == 1) {
+                        echo 'Starting Black Duck Scan ...'
+
+                        // ToDo:  Add Detect call here
+                        //
                     }
+                    else {
+                        echo 'No Changes, Black Duck scan skipped'
+                    }
+
                 }
             }
         }
