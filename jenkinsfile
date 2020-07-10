@@ -21,6 +21,7 @@ pipeline {
 
                         // ToDo:  Add Detect call here
                         //
+                        synopsys_detect '--detect.tools=DETECTOR --detect.project.name=SPM-${JOB_NAME} --detect.project.version.name=${GIT_BRANCH}'
                     }
                     else {
                         echo 'No Changes, Black Duck scan skipped'
