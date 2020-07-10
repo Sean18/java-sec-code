@@ -10,20 +10,20 @@ pipeline {
         
         stage('Synopsys Black Duck') {
             steps {
-                dir('insecurebank'){
-                    script {
-                        echo 'Files that were changed in last commit: '
-                        sh 'git show --name-only --oneline'
-                        echo 'Starting script...'
-                        
-                        def status = sh(returnStatus: true, script:'bash /var/lib/jenkins/workspace/BlackDuckScript/script.sh')
-                        if (status == 0) {
-                            echo 'Script passed, starting other activities...'
-                        }
-                        
-                        if (status != 0) {
-                            echo 'Files where changed, starting Black Duck Scan...'
-                        }
+                script {
+                    sh 'pwd'
+                    sh 'ls -all'
+                    echo 'Files that were changed in last commit: '
+                    sh 'git show --name-only --oneline'
+                    echo 'Starting script...'
+                    
+                    def status = sh(returnStatus: true, script:'bash /var/lib/jenkins/workspace/BlackDuckScript/script.sh')
+                    if (status == 0) {
+                        echo 'Script passed, starting other activities...'
+                    }
+                    
+                    if (status != 0) {
+                        echo 'Files where changed, starting Black Duck Scan...'
                     }
                 }
             }
