@@ -15,6 +15,7 @@ pipeline {
                     sh 'git show --name-only --oneline'
                     
                     echo '******** Testing MVN ***********'
+                    sh 'locate mvn'
                     sh 'which mvn'
                     sh 'mvn'
                     
