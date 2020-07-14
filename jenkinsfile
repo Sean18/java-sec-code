@@ -16,12 +16,7 @@ pipeline {
                 script {
                     echo 'Files that were changed in last commit: '
                     sh 'git show --name-only --oneline'
-                    
-                    echo '******** Testing MVN ***********'
-                    sh 'locate mvn'
-                    sh 'which mvn'
-                    sh 'mvn'
-                    
+                   
                     def status = sh(returnStatus: true, script:'bash BlackDuckFilesChanged.sh')
                     if (status == 1) {
                         echo 'Starting Black Duck Scan ...'
